@@ -1,5 +1,48 @@
 package servlets;
 
-public class InscriptionClient {
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+
+import beans.*;
+import dao.*;
+import forms.*;
+
+@SuppressWarnings("serial")
+public class InscriptionClient extends HttpServlet {
+	
+	private ClientDao clientDao ;
+	public static final String ATT_FORM = "form" ;
+	public static final String VUE = "/WEB-INF/register.jsp" ;
+	public static final String  VUE_SUCCES = "/WEB-INF/login.jsp" ;
+	public static final String ATT_CLIENT ="client" ;
+	
+	public void init() throws ServletException {
+		DAOFactory daoFactory = DAOFactory.getInstance() ;
+		this.clientDao = daoFactory.getClientDao() ;
+	}
+	
+	protected void doGet(HttpServletRequest request,HttpServletResponse response ) throws ServletException, IOException{
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request,HttpServletResponse response ) throws ServletException, IOException{
+		
+		/* Préparation de l'objet formulaire*/
+		InscriptionClientForm form = new InscriptionClientForm(clientDao) ;
+		
+		/* Appel au traitement et à la validation  de la requête et recupération du bean en résultant */
+		Client client  = form.saveClient(request) ;
+		
+		/*Stockage du formulaire et du bean dans l'objet request */
+		request.setAttribute(ATT_FORM, form);
+		request.setAttribute(ATT_CLIENT, client);
+		
+		this.getServletContext().getRequestDispatcher(VUE_SUCCES).forward(request, response);
+	}
+	
+	
 }
