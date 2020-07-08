@@ -67,8 +67,7 @@ CREATE TABLE Client(
         postal    Int NOT NULL ,
         num_tel   Varchar (255) NOT NULL ,
         email     Varchar (255) NOT NULL ,
-        password  Varchar (255) NOT NULL ,
-        id_panier Int NOT NULL
+        password  Varchar (255) NOT NULL 
 	,CONSTRAINT Client_PK PRIMARY KEY (id_user,id_client)
 )ENGINE=InnoDB;
 
@@ -133,15 +132,6 @@ ALTER TABLE Client
 	ADD CONSTRAINT Client_User0_FK
 	FOREIGN KEY (id_user)
 	REFERENCES User(id_user);
-
-ALTER TABLE Client
-	ADD CONSTRAINT Client_Panier1_FK
-	FOREIGN KEY (id_panier)
-	REFERENCES Panier(id_panier);
-
-ALTER TABLE Client 
-	ADD CONSTRAINT Client_Panier0_AK 
-	UNIQUE (id_panier);
 
 ALTER TABLE Facture
 	ADD CONSTRAINT Facture_Panier0_FK
