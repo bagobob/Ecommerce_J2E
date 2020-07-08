@@ -38,7 +38,7 @@ public class InscriptionClientForm {
 		return resultat;
 	}
 	
-	public Client saveClient(HttpServletRequest request) {
+	public Client saveClient(HttpServletRequest request) throws DaoException {
 		/* Récupération des éléments des champs du formulaire et vérification avec 
 		 * les éléments présent en base de donnée*/ 
 		String name=getValeurChamp(request, CHAMP_NAME);

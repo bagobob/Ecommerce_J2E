@@ -35,11 +35,17 @@ public class InscriptionClient extends HttpServlet {
 		InscriptionClientForm form = new InscriptionClientForm(clientDao) ;
 		
 		/* Appel au traitement et à la validation  de la requête et recupération du bean en résultant */
-		Client client  = form.saveClient(request) ;
 		
-		/*Stockage du formulaire et du bean dans l'objet request */
-		request.setAttribute(ATT_FORM, form);
-		request.setAttribute(ATT_CLIENT, client);
+		try {
+			Client client = form.saveClient(request);
+			/*Stockage du formulaire et du bean dans l'objet request */
+			request.setAttribute(ATT_FORM, form);
+			request.setAttribute(ATT_CLIENT, client);
+			
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		
 		
 		this.getServletContext().getRequestDispatcher(VUE_SUCCES).forward(request, response);
 	}
