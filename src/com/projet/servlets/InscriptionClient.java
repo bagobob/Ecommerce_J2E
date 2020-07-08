@@ -1,4 +1,4 @@
-package servlets;
+package com.projet.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import beans.*;
-import dao.*;
-import forms.*;
+import com.projet.beans.*;
+import com.projet.dao.*;
+import com.projet.forms.*;
 
-@WebServlet(name="InscriptionClient",value= "/register")
+
 public class InscriptionClient extends HttpServlet {
 	
 	private ClientDao clientDao ;
