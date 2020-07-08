@@ -25,7 +25,7 @@
 
 <!--================ Start Header Menu Area =================-->
 
-	<%@include file="/includes/header.jsp" %>
+	<%@include file="header.jsp" %>
 
 <!--================ End Header Menu Area =================-->
 
@@ -483,6 +483,6 @@
 
 
   <!--================ Start footer Area  =================-->	
-		<%@include file="/includes/footer.jsp" %>
+		<%@include file="footer.jsp" %>
 	<!--================ End footer Area  =================-->
 

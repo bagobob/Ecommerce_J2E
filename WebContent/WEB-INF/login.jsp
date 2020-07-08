@@ -24,7 +24,7 @@
 <body>
 <!--================ Start Header Menu Area =================-->
 
-	<%@include file="/includes/header.jsp" %>
+	<%@include file="/header.jsp" %>
 
 <!--================ End Header Menu Area =================-->
   
@@ -55,7 +55,7 @@
 						<div class="hover">
 							<h4>New to our website?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="<c:url value="/register"/>" >Create an Account</a>
+							<a class="button button-account" href="register">Create an Account</a>
 						</div>
 					</div>
 				</div>
@@ -92,5 +92,5 @@
 
 
   <!--================ Start footer Area  =================-->	
-		<%@include file="/includes/footer.jsp" %>
+		<%@include file="/footer.jsp" %>
 	<!--================ End footer Area  =================-->

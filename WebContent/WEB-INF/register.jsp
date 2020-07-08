@@ -23,7 +23,7 @@
 <body>
 <!--================ Start Header Menu Area =================-->
 
-	<%@include file="/includes/header.jsp" %>
+	<%@include file="/header.jsp" %>
 
 <!--================ End Header Menu Area =================-->
 
@@ -36,7 +36,7 @@
 					<h1>Register</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-               <li class="breadcrumb-item"><a href="<c:url value="/index.jsp"/>" >Home</a></li>
+               <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Register</li>
             </ol>
           </nav>
@@ -55,7 +55,7 @@
 						<div class="hover">
 							<h4>Already have an account?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="<c:url value="/login"/>" >Login Now</a>
+							<a class="button button-account" href="login">Login Now</a>
 						</div>
 					</div>
 				</div>
@@ -88,15 +88,15 @@
 								<span class="erreur">${form.erreurs['num_tel'] }</span>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required>
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required>
 								<span class="erreur">${form.erreurs['email'] }</span>
               				</div>
               				<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>
 								<span class="erreur">${form.erreurs['password'] }</span>
               				</div>
               				<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required>
+								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required>
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -117,5 +117,5 @@
 
 
  <!--================ Start footer Area  =================-->	
-		<%@include file="/includes/footer.jsp" %>
+		<%@include file="/footer.jsp" %>
 	<!--================ End footer Area  =================-->

@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import beans.*;
 import dao.*;
 import forms.*;
 
-@SuppressWarnings("serial")
+
 public class ConnexionClient extends HttpServlet {
 
 	private ClientDao clientDao ;

@@ -1,6 +1,12 @@
 package beans;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -532655963543175194L;
 	private int id_user;
 	private int  id_client;
 	private String name;
