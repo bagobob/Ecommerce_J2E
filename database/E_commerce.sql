@@ -12,20 +12,10 @@ CREATE TABLE Product(
         Qte        Varchar (255) NOT NULL ,
         Category   Varchar (255) NOT NULL ,
         price      Float NOT NULL
-	,CONSTRAINT Product_PK PRIMARY KEY (id_product)
+        ,CONSTRAINT Product_PK PRIMARY KEY (id_product)
 )ENGINE=InnoDB;
 
 
-#------------------------------------------------------------
-# Table: User
-#------------------------------------------------------------
-
-CREATE TABLE User(
-        id_user  Int  Auto_increment  NOT NULL ,
-        email    Varchar (255) NOT NULL ,
-        password Varchar (255) NOT NULL
-	,CONSTRAINT User_PK PRIMARY KEY (id_user)
-)ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
@@ -33,11 +23,10 @@ CREATE TABLE User(
 #------------------------------------------------------------
 
 CREATE TABLE admin(
-        id_user  Int NOT NULL ,
-        id_admin Int NOT NULL ,
+        id_admin Int NOT NULL AUTO_INCREMENT,
         email    Varchar (255) NOT NULL ,
         password Varchar (255) NOT NULL
-	,CONSTRAINT admin_PK PRIMARY KEY (id_user,id_admin)
+        ,CONSTRAINT admin_PK PRIMARY KEY (id_admin)
 )ENGINE=InnoDB;
 
 
@@ -49,7 +38,7 @@ CREATE TABLE gerer(
         id_product Int NOT NULL ,
         id_user    Int NOT NULL ,
         id_admin   Int NOT NULL
-	,CONSTRAINT gerer_PK PRIMARY KEY (id_product,id_user,id_admin)
+        ,CONSTRAINT gerer_PK PRIMARY KEY (id_product,id_user,id_admin)
 )ENGINE=InnoDB;
 
 
@@ -58,8 +47,7 @@ CREATE TABLE gerer(
 #------------------------------------------------------------
 
 CREATE TABLE Client(
-        id_user   Int NOT NULL ,
-        id_client Int NOT NULL ,
+        id_client Int NOT NULL AUTO_INCREMENT,
         name      Varchar (255) NOT NULL ,
         firstName Varchar (255) NOT NULL ,
         street    Varchar (255) NOT NULL ,
@@ -68,7 +56,7 @@ CREATE TABLE Client(
         num_tel   Varchar (255) NOT NULL ,
         email     Varchar (255) NOT NULL ,
         password  Varchar (255) NOT NULL 
-	,CONSTRAINT Client_PK PRIMARY KEY (id_user,id_client)
+        ,CONSTRAINT Client_PK PRIMARY KEY (id_client)
 )ENGINE=InnoDB;
 
 
@@ -80,7 +68,7 @@ CREATE TABLE Facture(
         id_facture Int  Auto_increment  NOT NULL ,
         prix_total Varchar (255) NOT NULL ,
         id_panier  Int NOT NULL
-	,CONSTRAINT Facture_PK PRIMARY KEY (id_facture)
+        ,CONSTRAINT Facture_PK PRIMARY KEY (id_facture)
 )ENGINE=InnoDB;
 
 
@@ -94,7 +82,7 @@ CREATE TABLE Panier(
         id_user    Int NOT NULL ,
         id_client  Int NOT NULL ,
         id_facture Int NOT NULL
-	,CONSTRAINT Panier_PK PRIMARY KEY (id_panier)
+        ,CONSTRAINT Panier_PK PRIMARY KEY (id_panier)
 )ENGINE=InnoDB;
 
 
@@ -107,45 +95,36 @@ CREATE TABLE Commander(
         id_product Int NOT NULL ,
         qte_cmd    Int NOT NULL ,
         date_cmd   Date NOT NULL
-	,CONSTRAINT Commander_PK PRIMARY KEY (id_panier,id_product)
+        ,CONSTRAINT Commander_PK PRIMARY KEY (id_panier,id_product)
 )ENGINE=InnoDB;
 
 
 
 
-ALTER TABLE admin
-	ADD CONSTRAINT admin_User0_FK
-	FOREIGN KEY (id_user)
-	REFERENCES User(id_user);
+ALTER TABLE gerer
+        ADD CONSTRAINT gerer_Product0_FK
+        FOREIGN KEY (id_product)
+        REFERENCES Product(id_product);
 
 ALTER TABLE gerer
-	ADD CONSTRAINT gerer_Product0_FK
-	FOREIGN KEY (id_product)
-	REFERENCES Product(id_product);
+        ADD CONSTRAINT gerer_admin1_FK
+        FOREIGN KEY (id_admin)
+        REFERENCES admin(id_admin);
 
-ALTER TABLE gerer
-	ADD CONSTRAINT gerer_admin1_FK
-	FOREIGN KEY (id_user,id_admin)
-	REFERENCES admin(id_user,id_admin);
-
-ALTER TABLE Client
-	ADD CONSTRAINT Client_User0_FK
-	FOREIGN KEY (id_user)
-	REFERENCES User(id_user);
 
 ALTER TABLE Facture
-	ADD CONSTRAINT Facture_Panier0_FK
-	FOREIGN KEY (id_panier)
-	REFERENCES Panier(id_panier);
+        ADD CONSTRAINT Facture_Panier0_FK
+        FOREIGN KEY (id_panier)
+        REFERENCES Panier(id_panier);
 
 ALTER TABLE Facture 
-	ADD CONSTRAINT Facture_Panier0_AK 
-	UNIQUE (id_panier);
+        ADD CONSTRAINT Facture_Panier0_AK 
+        UNIQUE (id_panier);
 
 ALTER TABLE Panier
-	ADD CONSTRAINT Panier_Client0_FK
-	FOREIGN KEY (id_user,id_client)
-	REFERENCES Client(id_user,id_client);
+        ADD CONSTRAINT Panier_Client0_FK
+        FOREIGN KEY (id_client)
+        REFERENCES Client(id_client);
 
 
 
