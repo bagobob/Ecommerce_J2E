@@ -8,5 +8,5 @@ public interface ClientDao {
 	
 	public Client findByEmail(String email);
 	
-	public Client findClient(String email, String password) ;
+	public Client findClient(String email, String password) throws DaoException;
 }

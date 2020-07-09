@@ -15,6 +15,10 @@ import com.projet.forms.*;
 
 public class InscriptionClient extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ClientDao clientDao ;
 	public static final String ATT_FORM = "form" ;
 	public static final String VUE = "/WEB-INF/register.jsp" ;
