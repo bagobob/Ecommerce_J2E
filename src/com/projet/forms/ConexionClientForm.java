@@ -48,7 +48,7 @@ public class ConexionClientForm {
 		String passwordCrypt = passwordEncryptor.encryptPassword(password) ;
 		
 		Client client = new Client() ;
-		client = clientDao.findByEmail(email) ;
+		client = clientDao.findClient(email,passwordCrypt) ;
 		
 		/* Validation du champ email*/
 		try {

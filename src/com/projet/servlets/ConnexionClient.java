@@ -19,7 +19,7 @@ public class ConnexionClient extends HttpServlet {
 	
 	public static final String ATT_FORM = "form" ;
 	public static final String VUE = "/WEB-INF/login.jsp" ;
-	public static final String  VUE_SUCCES = "/client/client.jsp" ;
+	public static final String  VUE_SUCCES = "/index.jsp" ;
 	public static final String ATT_CLIENT ="client" ;
 	public static final String ATT_SESSION_CLIENT ="sessionClient" ;
 	

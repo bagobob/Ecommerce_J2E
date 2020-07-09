@@ -42,6 +42,12 @@
           </div>
           <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
             <div class="hero-banner__content">
+            <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
+							<%-- Vérification de la présence d'un objet utilisateur en session --%>
+						<c:if test="${!empty sessionScope.sessionClient}">
+							<%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
+							<p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionClient.emaill}</p>
+							</c:if>
               <h4>Shop is fun</h4>
               <h1>Browse Our Premium Product</h1>
               <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>

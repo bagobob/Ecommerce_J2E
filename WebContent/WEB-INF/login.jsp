@@ -62,13 +62,13 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form" action="<c:url value="/login"/>"  id ="contactForm" >
+						<form class="row login_form" action="<c:url value="/login"/>"  id ="contactForm" method="post">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
 								<span class="erreur">${form.erreurs['email'] }</span>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 								<span class="erreur">${form.erreurs['password'] }</span>
 							</div>
 							<div class="col-md-12 form-group">
@@ -79,9 +79,11 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
+								
 								<a href="#">Forgot Password?</a>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 			</div>
