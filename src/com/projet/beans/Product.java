@@ -19,7 +19,7 @@ public class Product {
 	public String getLinkPhotoArriere() {
 		return linkPhotoArriere;
 	}
-	public void setLinkPhotoArriere(String linkPhotoArrière) {
+	public void setLinkPhotoArriere(String linkPhotoArriere) {
 		this.linkPhotoArriere = linkPhotoArriere;
 	}
 	public String getLinkPhotoCote() {
@@ -58,6 +58,4 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	
 }
