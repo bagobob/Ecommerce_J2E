@@ -11,7 +11,11 @@ CREATE TABLE Product(
         name       Varchar (255) NOT NULL ,
         Qte        Varchar (255) NOT NULL ,
         Category   Varchar (255) NOT NULL ,
-        price      Float NOT NULL
+        price      Float NOT NULL,
+        linkPhotoAvant Varchar(255) NOT NULL,
+        linkPhotoArriere Varchar(255) ,
+        linkPhotoCote Varchar(255) 
+        
         ,CONSTRAINT Product_PK PRIMARY KEY (id_product)
 )ENGINE=InnoDB;
 
