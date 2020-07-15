@@ -36,7 +36,7 @@
 					<h1>Login / Register</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<c:url value="/index.jsp"/>" >Home</a></li>
+              <li class="breadcrumb-item"><a href="<c:url value="index"/>" >Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Login/Register</li>
             </ol>
           </nav>
@@ -62,13 +62,13 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
-						<form class="row login_form" action="<c:url value="/login"/>"  id ="contactForm" method="post">
+						<form class="row login_form" action="<c:url value="/login"/>"  id ="contactForm" >
 							<div class="col-md-12 form-group">
-								<input type="email" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
 								<span class="erreur">${form.erreurs['email'] }</span>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 								<span class="erreur">${form.erreurs['password'] }</span>
 							</div>
 							<div class="col-md-12 form-group">
@@ -79,11 +79,9 @@
 							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
-								
 								<a href="#">Forgot Password?</a>
 							</div>
 						</form>
-						
 					</div>
 				</div>
 			</div>
