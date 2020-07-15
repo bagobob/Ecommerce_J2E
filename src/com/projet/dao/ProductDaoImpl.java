@@ -2,14 +2,8 @@ package com.projet.dao;
 
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.mysql.jdbc.Statement;
+import java.sql.*;
+import java.util.*;
 import com.projet.beans.Product;
 
 
@@ -18,9 +12,10 @@ public class ProductDaoImpl implements ProductDao{
 	private DAOFactory daoFactory;
 	private static final String SQL_INSERT = "INSERT INTO `product`(`id_product`, `name`, `Qte`, `Category`, `price`,`linkPhotoAvant`,`linkPhotoArriere`,`linkPhotoCote`) VALUES (NULL,?,?,?,?,?,?,?)";
 	private static final String SQL_TROUVER = "SELECT  `name` FROM `product` WHERE name=?";
+	private static final String SQL= "SELECT `id_product`, `name`, `Qte`, `Category`, `price`, `linkPhotoAvant`, `linkPhotoArriere`, `linkPhotoCote` FROM `product` "; 
 	private static final String SQL_DELETE_PAR_ID = "DELETE FROM product WHERE id = ?";
 	private static final String SQL_UPDATE = "UPDATE FROM product SET name=?,Qte=?,Category=?,price=?, linkPhotoAvant=?,linkPhotoArriere=?,linkPhotoCote=? WHERE id = ?";
-	private static final String SQL_ALL = "SELECT  * FROM `product` WHERE ORDER BY price";
+	private static final String SQL_ALL = "SELECT `id_product`, `name`, `Qte`, `Category`, `price`, `linkPhotoAvant` FROM `product";
 
 
 	public ProductDaoImpl(DAOFactory daoFactory) {
@@ -75,7 +70,7 @@ public class ProductDaoImpl implements ProductDao{
 		try {
 			conn = daoFactory.getConnection();
 			preparedStatement = conn.prepareStatement(SQL_DELETE_PAR_ID);
-			preparedStatement.setInt(1, P.getId_product());
+			preparedStatement.setLong(1, P.getId_product());
 			preparedStatement.setString(2, P.getName());
 			preparedStatement.setInt(3, P.getQte());
 			preparedStatement.setString(4, P.getCategory());
@@ -88,7 +83,7 @@ public class ProductDaoImpl implements ProductDao{
 			  
 			if ( statut == 0 ) {
 				throw new DaoException( 
-						"Échec de la modification de la notification, aucune ligne modifiée dans la table");
+						"ï¿½chec de la modification de la notification, aucune ligne modifiï¿½e dans la table");
 			}
 			
 		} catch (SQLException e) {
@@ -107,13 +102,13 @@ public class ProductDaoImpl implements ProductDao{
 		try {
 			conn = daoFactory.getConnection();
 			preparedStatement = conn.prepareStatement(SQL_UPDATE);
-			preparedStatement.setInt(1, P.getId_product());
+			preparedStatement.setLong(1, P.getId_product());
 			
 			int statut = preparedStatement.executeUpdate();
 			  
 			if ( statut == 0 ) {
 				throw new DaoException( 
-						"Échec de la suppression de la notification, aucune ligne supprimée dans la table.");
+						"ï¿½chec de la suppression de la notification, aucune ligne supprimï¿½e dans la table.");
 			}
 			
 		} catch (SQLException e) {
@@ -124,7 +119,7 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public Product findbyName(String name) throws DaoException {
+	public Product findbyName(String name)  {
 		// TODO Auto-generated method stub
 		Connection connexion=null;
 		PreparedStatement preparedStatement=null;
@@ -132,14 +127,22 @@ public class ProductDaoImpl implements ProductDao{
 		Product produit=null;
 		try {
 			connexion=daoFactory.getConnection();
-			preparedStatement=connexion.prepareStatement(SQL_TROUVER);
+			preparedStatement=connexion.prepareStatement(SQL);
 			
 			preparedStatement.setString(1, name);
 			resultat=preparedStatement.executeQuery();
 			
 			if(resultat.next()) {
 				produit=new Product();
+				produit.setId_product(resultat.getInt("id_product"));
 				produit.setName(resultat.getString("name"));
+				produit.setQte(resultat.getInt("qte"));
+				produit.setCategory(resultat.getString("category"));
+				produit.setPrice(resultat.getInt("price"));
+				produit.setLinkPhotoAvant(resultat.getString("linkPhotoAvant"));
+				produit.setLinkPhotoArriere(resultat.getString("linkPhotoArriere"));
+				produit.setLinkPhotoCote(resultat.getString("linkPhotoCote"));
+				
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -154,32 +157,77 @@ public class ProductDaoImpl implements ProductDao{
 				if(connexion !=null)
 					connexion.close();
 			}catch (SQLException ignore) {
+				ignore.getMessage();
 			}
 		}	
 	
 		return produit;
 	}
 	
+	@Override
+	public List<Product> Lister() {
+		List <Product>products =new ArrayList<Product>();
+		Connection connexion=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultat=null;
+		Product produit=null;
+		try {
+			connexion=daoFactory.getConnection();
+			preparedStatement=connexion.prepareStatement(SQL);
+			
+			//ExÃ©cution de la requÃªte
+			resultat=preparedStatement.executeQuery();
+			while(resultat.next())
+					{
+						produit=new Product();
+						produit.setId_product(resultat.getInt("id_product"));
+						produit.setName(resultat.getString("name"));
+						produit.setQte(resultat.getInt("qte"));
+						produit.setCategory(resultat.getString("category"));
+						produit.setPrice(resultat.getInt("price"));
+						produit.setLinkPhotoAvant(resultat.getString("linkPhotoAvant"));
+						produit.setLinkPhotoArriere(resultat.getString("linkPhotoArriere"));
+						produit.setLinkPhotoCote(resultat.getString("linkPhotoCote"));
+						
+						products.add(produit);	
+					}	
+		}catch(SQLException e) {	
+		}finally {
+				//fermeture de la connexion
+				try {
+					if(resultat != null)
+						resultat.close();
+					if(preparedStatement !=null)
+						preparedStatement.close();
+					if(connexion !=null)
+						connexion.close();
+				}catch (SQLException ignore) {
+					ignore.getMessage();
+				}
+			}	
+		
+		return products;
+	}
 
 	@Override
-	public List<Product> allProduct() throws DaoException {
+	public List<Product> allProduct()  {
 		// TODO Auto-generated method stub
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		ArrayList<Product>produits = new ArrayList<>();
+		List<Product>produits = new ArrayList<>();
 		try {
-			/* Récupération d'une connexion depuis la Factory */
+			/* Rï¿½cupï¿½ration d'une connexion depuis la Factory */
 			connexion = daoFactory.getConnection();
 			preparedStatement=connexion.prepareStatement(SQL_ALL);
 
 			resultSet = preparedStatement.executeQuery();
-			/* Parcours des lignes de données de l'éventuel ResulSet retourné */
+			/* Parcours des lignes de donnï¿½es de l'ï¿½ventuel ResulSet retournï¿½ */
 			while ( resultSet.next() ) {
 				produits.add( map( resultSet ) );
 			}
 		} catch ( SQLException e ) {
-			throw new DaoException( e );
+			e.getMessage();
 		} finally {
 			try {
 				if(resultSet != null)
